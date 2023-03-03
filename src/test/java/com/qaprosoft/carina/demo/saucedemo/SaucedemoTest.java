@@ -58,6 +58,7 @@ public class SaucedemoTest implements IAbstractTest {
         Assert.assertTrue(homePage.isPageOpened(), "Page is not opened");
         homePage.inputDataForLogin();
         InventorePage inventorePage = new InventorePage(getDriver());
+        inventorePage.clickMenuButton();
         Assert.assertTrue(inventorePage.checkIsPresentButtonLogout(),"Button logout is not found");
         inventorePage.clickButtonLogOut();
         Assert.assertTrue(homePage.checkIsPresentUsernameFields(),"Field username is not found");

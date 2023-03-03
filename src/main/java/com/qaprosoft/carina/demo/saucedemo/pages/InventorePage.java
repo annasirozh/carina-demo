@@ -26,6 +26,9 @@ public class InventorePage extends AbstractPage {
     @FindBy(xpath = "//a[@id='logout_sidebar_link']")
     private ExtendedWebElement buttonLogout;
 
+    @FindBy(xpath="//div[@class='bm-burger-button']")
+    private ExtendedWebElement menubutton;
+
     public boolean checkIsPresentTitleProducts(){
         return titleProducts.isElementPresent();
     }
@@ -58,6 +61,9 @@ public class InventorePage extends AbstractPage {
 
     public void clickButtonLogOut(){
         buttonLogout.click();
+    }
+    public void clickMenuButton(){
+        menubutton.click();
     }
 
 }
