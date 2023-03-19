@@ -1,22 +1,22 @@
 package com.qaprosoft.carina.demo.utils.utilsOnliner;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class OnlinerUtils {
+    public static String createExpectedCountProduct() {
+        String exceptedCountProducts = "1 товар на сумму:";//лучше парсить и вытягивать количество
+        return exceptedCountProducts;
+    }
 
-    public static List<String> createListMenuItemCatalog(){
-        List<String> menuItemCatalogList = new ArrayList<>();
-        menuItemCatalogList.add("Onlíner Prime");
-        menuItemCatalogList.add("Электроника");
-        menuItemCatalogList.add("Компьютеры и сети");
-        menuItemCatalogList.add("Бытовая техника");
-        menuItemCatalogList.add("На каждый день");
-        menuItemCatalogList.add("Стройка и ремонт");
-        menuItemCatalogList.add("Дом и сад");
-        menuItemCatalogList.add("Авто и мото");
-        menuItemCatalogList.add("Красота и спорт");
-        menuItemCatalogList.add("Детям и мамам");
+    public static List<String> createListMenuItemCatalog() {
+        List<String> menuItemCatalogList = Arrays.asList("Onlíner Prime", "Электроника", "Компьютеры и сети", "Бытовая техника",
+                "На каждый день", "Стройка и ремонт", "Дом и сад", "Авто и мото", "Красота и спорт", "Детям и мамам");
         return menuItemCatalogList;
+    }
+
+    public static List<String> createListMenuAutoMarket() {
+        List<String> expectedMenuAutoMarketList = Arrays.asList("Авто", "Мото", "Отзывы об авто");
+        return expectedMenuAutoMarketList;
     }
 }

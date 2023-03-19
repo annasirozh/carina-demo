@@ -3,12 +3,11 @@ package com.qaprosoft.carina.demo.onliner.pages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.db.models.onliner.Laptop;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CatalogOnlinerPage extends AbstractPage {
 
@@ -21,30 +20,18 @@ public class CatalogOnlinerPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='catalog-navigation-list__aside-title' and contains(text(),'Ноутбуки, компьютеры, мониторы')]")
     private ExtendedWebElement itemMenuLaptop;
 
-    @FindBy(xpath = "//a[@href='https://catalog.onliner.by/notebook']")
-    private ExtendedWebElement linkLaptop;
 
-    @FindBy(xpath = "//span[@data-bind='html: product.extended_name || product.full_name' and contains(text(),'Huawei ')]")
-    private ExtendedWebElement huawei53Laptop;
+    @FindBy(xpath = "//a[@data-shop-id='3886' and @class='button-style button-style_base-alter button-style_primary product-aside__button product-aside__button_narrow product-aside__button_cart button-style_expletive']")
+    private ExtendedWebElement addToCart;
 
-    @FindBy(xpath = "//h1[@class='catalog-masthead__title js-nav-header' and contains(text(),'Huawei')]")
-    private ExtendedWebElement laptopName;
+    @FindBy(xpath = "//div[contains(@class,'cart-form__offers-part_ammount')]//div[contains(@class,'cart-form__description')]")
+    private ExtendedWebElement countOfProductsInCart;
 
-    @FindBy(xpath = "//span[@class='offers-description-filter-control__switcher-inner' and contains(text(),'8 ГБ')]")
-    private ExtendedWebElement laptopMemory;
-
-    @FindBy(xpath = "//a[@class='offers-description__link offers-description__link_nodecor js-description-price-link']")
-    private ExtendedWebElement laptopPrice;
-
-
+    @FindBy(xpath = "//a[contains(@class,'button-style_base-alter') and contains(text(), 'Перейти в корзину')]")
+    private ExtendedWebElement goToCart;
 
     public List<String> getTextListItemOfMenu() {
-        List<String> getMenuItemList = new ArrayList<>();
-
-        for (ExtendedWebElement menuItemElement : menuItemElementlist) {
-            getMenuItemList.add(menuItemElement.getText());
-        }
-        return getMenuItemList;
+        return menuItemElementlist.stream().map(menuItemElement -> menuItemElement.getText()).collect(Collectors.toList());
     }
 
     public boolean checkIsPresentMenuItemElement() {
@@ -66,10 +53,11 @@ public class CatalogOnlinerPage extends AbstractPage {
         return itemMenuLaptop.isElementPresent();
     }
 
-    public void clickMenuItemLaptop() {
+    public ProductPage clickMenuItemLaptop() {
         itemMenuLaptop.click();
+        return new ProductPage(driver);
     }
-
+/*
     public boolean checkIsPresentLinkLaptop() {
         return linkLaptop.isElementPresent();
     }
@@ -92,14 +80,36 @@ public class CatalogOnlinerPage extends AbstractPage {
         laptopActual.setNameOfLaptop(laptopName.getText());
         laptopActual.setMemory(laptopMemory.getText());
         laptopActual.setPrice(laptopPrice.getText());
+        return laptopActual;
+    }
+
+    public Laptop getActualLaptop(){
+        Laptop laptopActual= setActualLaptop();
         laptopActual.getNameOfLaptop();
         laptopActual.getMemory();
         laptopActual.getPrice();
-        return laptopActual;
+        return laptopActual;//сделать get
+    }*/
 
+    public boolean checkIsPresentButtonCart() {
+        return addToCart.isElementPresent();
     }
 
+    public void clickOnButtonAddToCart() {
+        addToCart.click();
+    }
 
+    public boolean checkIsPresentCountProduct() {
+        return countOfProductsInCart.isElementPresent();
+    }
+
+    public String getTextInCountProduct() {
+        return countOfProductsInCart.getText();
+    }
+
+    public void clickOnGoToCart() {
+        goToCart.click();
+    }
 
 
     public CatalogOnlinerPage(WebDriver driver) {
