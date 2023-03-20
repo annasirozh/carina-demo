@@ -1,0 +1,13 @@
+{
+  "id": 1995,
+  "title": "Ficus",
+  "description": "Indoor plant that saturates the air with oxygen,",
+  "price": 23,
+  "discountPercentage": 4.09,
+  "rating": 4.52,
+  "stock": 78,
+  "brand": "Gardener",
+  "category": "products",
+  "thumbnail": "https://i.dummyjson.com/data/products/1995/thumbnail.jpg"
+
+}
